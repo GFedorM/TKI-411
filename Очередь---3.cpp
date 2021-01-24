@@ -1,59 +1,59 @@
 #include <iostream>
 using namespace std;
-const int N=1024; // размер очереди 
+const int N=1024; // СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё 
 
 struct Queue
 {	
-	int data[N]; // массив данных
-	int last; // указатель на начало
+	int data[N]; // РјР°СЃСЃРёРІ РґР°РЅРЅС‹С…
+	int last; // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ
 };
 
-void Creation(Queue *Q){ // создание очереди
+void Creation(Queue *Q){ // СЃРѕР·РґР°РЅРёРµ РѕС‡РµСЂРµРґРё
  Q->last=0; 
  
 }
 
-bool Full(Queue *Q){ // проверка очереди на пустоту
+bool Full(Queue *Q){ // РїСЂРѕРІРµСЂРєР° РѕС‡РµСЂРµРґРё РЅР° РїСѓСЃС‚РѕС‚Сѓ
 
 if (Q->last==0) return true;
 else return false;
 
 }
 
-void Add(Queue *Q){ // добавление елемента
+void Add(Queue *Q){ // РґРѕР±Р°РІР»РµРЅРёРµ РµР»РµРјРµРЅС‚Р°
 
 if (Q->last==N){ 
 
-cout<<"Очередь заполнена"<<endl;
+cout<<"РћС‡РµСЂРµРґСЊ Р·Р°РїРѕР»РЅРµРЅР°"<<endl;
 return;
 
 }
 
 int value;
-cout<<"Значение ";
+cout<<"Р—РЅР°С‡РµРЅРёРµ ";
 cin>>value;
 Q->data[Q->last++]=value;
-cout<<endl<<"Элемент добавлен в очередь"<<endl;
+cout<<endl<<"Р­Р»РµРјРµРЅС‚ РґРѕР±Р°РІР»РµРЅ РІ РѕС‡РµСЂРµРґСЊ"<<endl;
 }
 
-void Delete(Queue *Q){ //удаление элемента
+void Delete(Queue *Q){ //СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 
-for (int i=0; i<Q->last && i<N; i++) //смещение элементов
+for (int i=0; i<Q->last && i<N; i++) //СЃРјРµС‰РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
 Q->data[i]=Q->data[i+1]; Q->last--;
 
 }
 
-int Top(Queue *Q){ //вывод начального элемента
+int Top(Queue *Q){ //РІС‹РІРѕРґ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
  return Q->data[0];
  
 }
-int Size(Queue *Q){ //размер очереди
+int Size(Queue *Q){ //СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё
 
  return Q->last;
 }
 
-int main(){ //главная функция
+int main(){ //РіР»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ
 
 setlocale(LC_ALL,"Rus");
 Queue Q;
@@ -61,12 +61,12 @@ Creation(&Q);
 char number;
 do{
 
-cout<<"1. добавить элемент"<<endl;
-cout<<"2. удалитьт элемент"<<endl;
-cout<<"3. Вывести верхний элемент"<<endl;
-cout<<"4. размер очереди"<<endl;
-cout<<"0. выйти\n\n";
-cout<<"номер команды "; cin>>number;
+cout<<"1. РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚"<<endl;
+cout<<"2. СѓРґР°Р»РёС‚СЊС‚ СЌР»РµРјРµРЅС‚"<<endl;
+cout<<"3. Р’С‹РІРµСЃС‚Рё РІРµСЂС…РЅРёР№ СЌР»РµРјРµРЅС‚"<<endl;
+cout<<"4. СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё"<<endl;
+cout<<"0. РІС‹Р№С‚Рё\n\n";
+cout<<"РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹ "; cin>>number;
 switch (number)
 {
 case '1': Add(&Q);
@@ -74,25 +74,25 @@ break;
 
 case '2':
 if (Full(&Q))
-cout<<endl<<"очередь пуста"<<endl;
+cout<<endl<<"РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°"<<endl;
 else
 {
 Delete(&Q);
-cout<<endl<<"элемент удален из очереди"<<endl;
+cout<<endl<<"СЌР»РµРјРµРЅС‚ СѓРґР°Р»РµРЅ РёР· РѕС‡РµСЂРµРґРё"<<endl;
 } break;
 
 case '3':
-if (Full(&Q)) cout<<endl<<"очередь пуста"<<endl;
-else cout<<"Начальный элемент: "<<Top(&Q)<<""<<endl;
+if (Full(&Q)) cout<<endl<<"РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°"<<endl;
+else cout<<"РќР°С‡Р°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚: "<<Top(&Q)<<""<<endl;
 break;
 
 case '4':
-if (Full(&Q)) cout<<endl<<"Очередь пуста"<<endl;
-else cout<<"Размер очереди: "<<Size(&Q)<<""<<endl;
+if (Full(&Q)) cout<<endl<<"РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°"<<endl;
+else cout<<"Р Р°Р·РјРµСЂ РѕС‡РµСЂРµРґРё: "<<Size(&Q)<<""<<endl;
 break;
 
 case '0': break;
-default: cout<<endl<<"Команда не определена"<<endl;
+default: cout<<endl<<"РљРѕРјР°РЅРґР° РЅРµ РѕРїСЂРµРґРµР»РµРЅР°"<<endl;
 break;
 }
 } while(number!='0');
